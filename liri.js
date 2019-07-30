@@ -42,7 +42,7 @@ debugger;
 
 //User makes a request of Liri
 
-var questions = [
+var question1 = [
           {
             type: 'list',
             name: 'heyLiri',
@@ -52,32 +52,40 @@ var questions = [
               'spotify-this-song', 
               'movie-this', 
               'do-what-it-says']
-          },
+          }]
+
+var questionConcert = [
           {
             type: 'input',
             name: 'whatConcert',
             message: 'What band do you want to see?',
-          },
+            }]
+
+var questionSong =  [
           {
             type: 'input',
             name: 'whatSong',
             message: 'What song do you want to know more about?',
-          },
-          {
+          }]
+  
+var questionMovie = 
+          [{
           type: 'input',
           name: 'whatMovie',
           message: 'What movie do you want to know more about?',
-          },
+          }]
+
+var questionDoIt = [
           {
             type: 'input',
             name: 'doIt',
             message: 'Ready to do what I say?',
-            },         
+            }       
         ]
 
-        inquirer.prompt(questions).then(answers => {
-      //    console.log(answers.heyLiri)
-    //    }
+        inquirer.prompt(question1).then(answer1 => {
+          console.log(answer1.heyLiri)
+        
    //     );
  //   answers.heyLiri
     //  var heyLi = answers.askLiri;
@@ -86,15 +94,11 @@ var questions = [
   
 //debugger;
   // Performing the appropriate operation based on user's selection
-     if  (answers.heyLiri === "concert-this") {
-       //   console.log("Who do you want to see?")
-          inquirer.prompt(questions.whatConcert).then(answers=>{
-            var searchConcert = (answers.whatConcert)
-            console.log(searchConcert);
-          });
-    }
-  });
-       //   concert();
+     if  (answer1.heyLiri === "concert-this") {
+            concert();
+    } 
+  }); 
+       //   
               //    }
                   
   /*    else if (answers.heyLiri === "spotify-this-song")  {
@@ -115,11 +119,17 @@ var questions = [
  //     return result;
 //debugger;
  //call concert function to find a local event for a band; uesr input band name, run call to band api
-   //        function concert(){
+       function concert(){
+
+        inquirer.prompt(questionConcert).then(answer2=>{
+          var searchConcert = (answer2.whatConcert)
+          console.log(searchConcert);
+        
+      
       /*<<<<<<<<Working Bands in Town call START*>>>>>>>*/
       //reference from instructions.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")}
- /*               axios
-                  .get("https://rest.bandsintown.com/artists/Metallica/events?app_id=codingbootcamp")
+              axios
+                  .get("https://rest.bandsintown.com/artists/"+ searchConcert + "/events?app_id=codingbootcamp")
 
                 .then(function(response){
                   console.log(response);
@@ -127,9 +137,10 @@ var questions = [
                 .catch(function(err) {
                   console.error('Error occurred: ' + err); 
                 });
-              }        */
+              });
+              }    
         /*<<<<<<<<working bandsintown call END*>>>>>>>*/        
-
+      
 //call song function to get details about a song input by the user, call to spotify api for details
    /*         function song(){
                  axios
