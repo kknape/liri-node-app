@@ -35,13 +35,14 @@
       //fs to read our text file
       var fs = require("fs");
       //inquirer to get user inputs
-      var inquirer = require("inquirer");
-
+      const inquirer = require("inquirer");
+      
+debugger;
 
 
 //User makes a request of Liri
 
-    var askLiri= [
+var questions = [
           {
             type: 'list',
             name: 'heyLiri',
@@ -51,34 +52,73 @@
               'spotify-this-song', 
               'movie-this', 
               'do-what-it-says']
-          }
-        ];
-    inquirer.prompt(askLiri).then(function(answers) {
-      var heyLiri = answers.askLiri;
-      console.log(JSON.stringify(answers, null, ' '));
+          },
+          {
+            type: 'input',
+            name: 'whatConcert',
+            message: 'What band do you want to see?',
+          },
+          {
+            type: 'input',
+            name: 'whatSong',
+            message: 'What song do you want to know more about?',
+          },
+          {
+          type: 'input',
+          name: 'whatMovie',
+          message: 'What movie do you want to know more about?',
+          },
+          {
+            type: 'input',
+            name: 'doIt',
+            message: 'Ready to do what I say?',
+            },         
+        ]
+
+        inquirer.prompt(questions).then(answers => {
+      //    console.log(answers.heyLiri)
+    //    }
+   //     );
+ //   answers.heyLiri
+    //  var heyLi = answers.askLiri;
+    //  console.log(JSON.stringify(answers, null, ' '));
     
-
-      if  (heyLiri === "concert-this") {
-              concert();
-                  }
-              
-      else if (heyLiri === "spotify-this-song")  {
-              song();
+  
+//debugger;
+  // Performing the appropriate operation based on user's selection
+     if  (answers.heyLiri === "concert-this") {
+       //   console.log("Who do you want to see?")
+          inquirer.prompt(questions.whatConcert).then(answers=>{
+            var searchConcert = (answers.whatConcert)
+            console.log(searchConcert);
+          });
+    }
+  });
+       //   concert();
+              //    }
+                  
+  /*    else if (answers.heyLiri === "spotify-this-song")  {
+        console.log("What song do you want to know more about?")   
+    //          song();
       }
-
-      else if (heyLiri === "movie-this")  {
-              movie();
+ 
+     else if (answers.heyLiri === "movie-this")  {
+        console.log("What movie do you want to see?")      
+    //    movie();
+     }
+  */
+  /*   else if (answers.heyLiri === "do-what-it-says")  {
+        console.log("Do what I say.")
+     //  doIt();
       }
-
-      else if (heyLiri === "do-what-it-says")  {
-              doIt();
-      }
-    });
+    });  */
+ //     return result;
+//debugger;
  //call concert function to find a local event for a band; uesr input band name, run call to band api
-            function concert(){
+   //        function concert(){
       /*<<<<<<<<Working Bands in Town call START*>>>>>>>*/
       //reference from instructions.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")}
-                axios
+ /*               axios
                   .get("https://rest.bandsintown.com/artists/Metallica/events?app_id=codingbootcamp")
 
                 .then(function(response){
@@ -87,11 +127,11 @@
                 .catch(function(err) {
                   console.error('Error occurred: ' + err); 
                 });
-              }        
+              }        */
         /*<<<<<<<<working bandsintown call END*>>>>>>>*/        
 
 //call song function to get details about a song input by the user, call to spotify api for details
-            function song(){
+   /*         function song(){
                  axios
                   .get('https://api.spotify.com/v1/search?q=roadhouse%20blues')
                   .then(function(data) {
@@ -103,10 +143,10 @@
                 };
 
           function movie(){
-
+*/
 //call fucntion to get user input of movie, get details of movie from omdb api
 /*<<<<<<<<working OMDB call START*>>>>>>>*/
-                    axios
+ /*                   axios
                     .get("http://www.omdbapi.com/?t=Mr.+Nobody&apikey=trilogy")
 
                     .then(function(response){
@@ -115,22 +155,21 @@
                     .catch(function(err) {
                       console.error('Error occurred: ' + err); 
                     });
-                  }
+                  } */
 /*<<<<<<<<working OMDB call END*>>>>>>>*/  
 
 
 //call fucntion  for "do what it says" which reads radom file which has [spotify-this-song,"I Want it That Way" ]
-        function doIt(){
+ /*       function doIt(){
 /*<<<<<<<<Do it START*>>>>>>>*/
-            fs.readFile("random.txt", "utf8", function(error, data) {
+ /*           fs.readFile("random.txt", "utf8", function(error, data) {
               if (error) {
                 return console.log(error);
               }
               else console.log(data);
             }); 
-            }
+            } */
 /*<<<<<<<<Do it END*>>>>>>>*/
-
   
 
     
