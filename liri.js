@@ -20,13 +20,10 @@
       //keys
       var keys = require("./keys.js");
       
-  /*    //spotify
-     var spotify = new Spotify(keys.spotify);
-     
+    //spotify
+    var Spotify = require('node-spotify-api');  
+    var spotify = new Spotify(keys.spotify);
     
-     var Spotify = require('spotify-web-api-js');
-     var s = new Spotify();
- */
     //moment
       var moment = require("moment");
         moment().format();
@@ -97,16 +94,13 @@ var questionDoIt = [
      if  (answer1.heyLiri === "concert-this") {
             concert();
     } 
-  }); 
-       //   
-              //    }
-                  
-  /*    else if (answers.heyLiri === "spotify-this-song")  {
+           
+      else if (answer1.heyLiri === "spotify-this-song")  {
         console.log("What song do you want to know more about?")   
-    //          song();
+              song();
       }
- 
-     else if (answers.heyLiri === "movie-this")  {
+  });
+  /*  else if (answers.heyLiri === "movie-this")  {
         console.log("What movie do you want to see?")      
     //    movie();
      }
@@ -124,8 +118,7 @@ var questionDoIt = [
         inquirer.prompt(questionConcert).then(answer2=>{
           var searchConcert = (answer2.whatConcert)
           console.log(searchConcert);
-        
-      
+             
       /*<<<<<<<<Working Bands in Town call START*>>>>>>>*/
       //reference from instructions.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")}
               axios
@@ -138,23 +131,27 @@ var questionDoIt = [
                   console.error('Error occurred: ' + err); 
                 });
               });
-              }    
+            }   
         /*<<<<<<<<working bandsintown call END*>>>>>>>*/        
       
 //call song function to get details about a song input by the user, call to spotify api for details
-   /*         function song(){
-                 axios
-                  .get('https://api.spotify.com/v1/search?q=roadhouse%20blues')
-                  .then(function(data) {
-                    console.log(data); 
-                    })
-                  .catch(function(err) {
-                    console.error('Error occurred: ' + err); 
-                    });
-                };
+        function song(){
+          inquirer.prompt(questionSong).then(answer3=>{
+            var searchSong = (answer3.whatSong)
+            console.log(searchSong);
 
-          function movie(){
-*/
+     //   spotify.search({ query: whatSong }, function(err, data) {
+     //     if ( err ) {
+     //         console.log('Error occurred: ' + err);
+     //         return;
+     //       }
+      //    });
+        });      
+      }
+      
+    
+     //     function movie(){
+
 //call fucntion to get user input of movie, get details of movie from omdb api
 /*<<<<<<<<working OMDB call START*>>>>>>>*/
  /*                   axios
