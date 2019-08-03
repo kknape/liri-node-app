@@ -169,20 +169,28 @@ var questionDoIt = [
             inquirer.prompt(questionMovie).then(answer4=>{
             var searchMovie = (answer4.whatMovie)
 /*<<<<<<<<working OMDB call START*>>>>>>>*/
-                   axios
+            //    if (searchMovie = undefined) {
+             //     var searchMovie = "Mr. Nobody";
+             //   }
+                axios
                     .get("http://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy")
                     .then(function(response){
-                 //   console.log(response.data);
+                   // console.log(response.data);
                     console.log("Movie: " + response.data.Title);
                     console.log("Year released: " + response.data.Year);
                     console.log("IMDB rating: " + response.data.imdbRating);
                     console.log("Rotten Tomatoes score: " + response.data.Ratings[1].Value);
+                    console.log("Produced in: " + response.data.Country);
+                    console.log("Language: " + response.data.Language);
+                    console.log("Plot: " + response.data.Plot);
+                    console.log("Actors: " + response.data.Actors);
                     })
                     .catch(function(err) {
                       console.error('Error occurred: ' + err); 
                     });
                   });
                 }
+          
 /*<<<<<<<<Movie END>>>>>>>*/  
 
 //call fucntion  for "do what it says" which reads radom file which has [spotify-this-song,"I Want it That Way" ]
