@@ -1,6 +1,7 @@
 # liri-node-app
 
-#What Is LIRI?
+# What Is LIRI?
+
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI is a command line node app that takes in parameters and gives you back data.
 
 LIRI will search
@@ -10,14 +11,14 @@ LIRI will search
 
  LIRI will return results from Spotify, Bands in Town and OMDB.
  
- #How the App Is Organized
+ # How the App Is Organized
   - The App uses a few different npm packages to process the user iputs
   - NPM Inquirer is used for the user prompts
   - NPM Axios is used to get data from Bands In Town and OMDB api's
   - NPM Node Spotify API is used to get data from Spotify
   - NPM Moment is used to display the date-time stamp in user friendly format
   
-  #How to Use the App
+  # How to Use the App
    - User selects from LIRI prompts:
      - concert-this
      - spotify-this-song
@@ -39,3 +40,11 @@ LIRI will search
        -(Current Release) If user selects do-what-it-says, LIRI provides results for song "I Want it That Way"
        -(Next Release) LIRI runs a random search and provides random result for one of the four responses
        
+# Technology Used for the App
+ - Node
+ - NPM Packages: Axios, dotenv, inquirer, moment, node-spotify-api
+ - APIs: https://rest.bandsintown.com, node-spotify-api, http://www.omdbapi.com
+ 
+ I developed this app based on provide requirements and with guidance from my instructors.
+ 
+ 
