@@ -137,9 +137,15 @@ var questionDoIt =
       
 //call song function to get details about a song input by the user, call to spotify api for details
     function song(){
+
+
+
           inquirer.prompt(questionSong).then(answer3=>{
             var searchSong = (answer3.whatSong)
          //     console.log(searchSong);
+                if (searchSong === "") {
+                  searchSong = "The Sign";
+                    }
 
             spotify.search({ type: 'track', query: searchSong, limit: 5 })
               .then(function(response){ 
