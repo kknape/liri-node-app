@@ -23,7 +23,7 @@
     //spotify
     var Spotify = require('node-spotify-api');  
     var spotify = new Spotify(keys.spotify);
-    console.log(spotify);
+    
     //moment
       var moment = require("moment");
         moment().format();
@@ -69,19 +69,18 @@ var questionMovie =
           message: 'What movie do you want to know more about?',
           }]
 
-var questionDoIt = [
-          {
+var questionDoIt = 
+            [{
             type: 'input',
             name: 'doIt',
             message: 'Ready to do what I say?',
-            }       
-        ]
+            }]
 
         inquirer.prompt(question1).then(answer1 => {
           console.log(answer1.heyLiri)
 
   // Run function depending on user's selection; 
-     if  (answer1.heyLiri === "concert-this") {
+      if  (answer1.heyLiri === "concert-this") {
             concert();
       } 
            
@@ -89,20 +88,20 @@ var questionDoIt = [
             song();
       }
   
-    else if (answer1.heyLiri === "movie-this")  {
+      else if (answer1.heyLiri === "movie-this")  {
             movie();
       }
     
-    else if (answer1.heyLiri === "do-what-it-says") {
+      else if (answer1.heyLiri === "do-what-it-says") {
             doIt();
       }
-    });
+      });
 
  //call concert function to find a local event for a band; uesr inputs band name, run call to band api
        function concert(){
           inquirer.prompt(questionConcert).then(answer2=>{
             var searchConcert = (answer2.whatConcert)            
-/*<<<<<<<<Working Bands in Town call START*>>>>>>>*/
+          /*<<<<<<<<Working Bands in Town call START*>>>>>>>*/
               axios
                 .get("https://rest.bandsintown.com/artists/"+ searchConcert + "/events?app_id=codingbootcamp")
                 .then(function(response){
@@ -145,22 +144,33 @@ var questionDoIt = [
             spotify.search({ type: 'track', query: searchSong, limit: 5 })
               .then(function(response){ 
             
-              //  console.log(response);
               // console.log(JSON.stringify(data, null, 2)); 
                   for (var i = 0; i < response.tracks.items.length; i++) {
                     for (var j = 0; j < response.tracks.items[i].artists.length; j++){
-              //      console.log(JSON.stringify(response));        
-             //name of Artist(s)
-                     console.log(JSON.stringify(response.tracks.items[i].artists[j].name));
-
-                      //The song's name
-                      console.log(JSON.stringify(response.tracks.items[i].name));
                   
-                      //A preview link of the song from Spotify
-                      console.log(JSON.stringify(response.tracks.items[i].external_urls.spotify));
-                    
-                      //The album that the song is from
-                      console.log(JSON.stringify(response.tracks.items[i].album.name));
+             //name of Artist(s)
+                     var artistName = (JSON.stringify("Artists: " + response.tracks.items[i].artists[j].name));
+                     var artistNameF = artistName.substr(1);
+                     var artistNameL = artistNameF.slice(0, -1);
+                     console.log("\n" + artistNameL);
+
+              //The song's name
+                      var songName = (JSON.stringify("Song Name: " + response.tracks.items[i].name));
+                      var songNameF = songName.substr(1);
+                      var songNameL = songNameF.slice(0, -1);
+                      console.log(songNameL);
+
+              //A preview link of the song from Spotify
+                      var preview = (JSON.stringify("Preview Link: " + response.tracks.items[i].external_urls.spotify));
+                      var previewF = preview.substr(1);
+                      var previewL = previewF.slice(0, -1);
+                      console.log(previewL);
+
+              //The album that the song is from
+                      var album = (JSON.stringify("Album: " + response.tracks.items[i].album.name));
+                      var albumF = album.substr(1);
+                      var albumL = albumF.slice(0, -1);
+                      console.log(albumL);
                   }}
                     })
                 
@@ -182,7 +192,8 @@ var questionDoIt = [
 /*<<<<<<<<working OMDB call START*>>>>>>>*/
               if (searchMovie === "") {
                  searchMovie = "Mr. Nobody";
-              }
+                    }
+
                 axios
                     .get("http://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy")
                     .then(function(response){
@@ -215,12 +226,47 @@ var questionDoIt = [
       function doIt(){
 /*<<<<<<<<Do it START*>>>>>>>*/
            fs.readFile("random.txt", "utf8", function(error, data) {
-              if (error) {
-                return console.log(error);
-              }
-              else console.log(data);
-            }); 
-            }
-/*<<<<<<<<Do it END*>>>>>>>*/
+                    if (error) {
+                        return console.log(error);
+                      }
 
+              spotify.search({ type: 'track', query: data, limit: 5 })
+              .then(function(response){ 
+            
+                  for (var i = 0; i < response.tracks.items.length; i++) {
+                    for (var j = 0; j < response.tracks.items[i].artists.length; j++){
+                  
+             //name of Artist(s)
+                     var artistName = (JSON.stringify("Artists: " + response.tracks.items[i].artists[j].name));
+                     var artistNameF = artistName.substr(1);
+                     var artistNameL = artistNameF.slice(0, -1);
+                     console.log("\n" + artistNameL);
+
+              //The song's name
+                      var songName = (JSON.stringify("Song Name: " + response.tracks.items[i].name));
+                      var songNameF = songName.substr(1);
+                      var songNameL = songNameF.slice(0, -1);
+                      console.log(songNameL);
+
+              //A preview link of the song from Spotify
+                      var preview = (JSON.stringify("Preview Link: " + response.tracks.items[i].external_urls.spotify));
+                      var previewF = preview.substr(1);
+                      var previewL = previewF.slice(0, -1);
+                      console.log(previewL);
+
+              //The album that the song is from
+                      var album = (JSON.stringify("Album: " + response.tracks.items[i].album.name));
+                      var albumF = album.substr(1);
+                      var albumL = albumF.slice(0, -1);
+                      console.log(albumL);
+                  }
+                }
+              })  
+                    .catch(function(err) {
+                        console.log(err);
+                      });                    
+                  })
+                } 
+              
+/*<<<<<<<<Do it END*>>>>>>>*/
     
