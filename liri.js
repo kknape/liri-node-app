@@ -23,6 +23,7 @@
     //spotify
     var Spotify = require('node-spotify-api');  
     var spotify = new Spotify(keys.spotify);
+    console.log(spotify);
     //moment
       var moment = require("moment");
         moment().format();
@@ -139,47 +140,64 @@ var questionDoIt = [
     function song(){
           inquirer.prompt(questionSong).then(answer3=>{
             var searchSong = (answer3.whatSong)
-              console.log(searchSong);
+         //     console.log(searchSong);
 
             spotify.search({ type: 'track', query: searchSong, limit: 5 })
               .then(function(response){ 
+            
               //  console.log(response);
               // console.log(JSON.stringify(data, null, 2)); 
-             //     for (var i = 0; i < response.data.length; i++) {
-                      //name of Artist(s)
-                     console.log(JSON.stringify(response));
-                    })
-                  
+                  for (var i = 0; i < response.tracks.items.length; i++) {
+                    for (var j = 0; j < response.tracks.items[i].artists.length; j++){
+              //      console.log(JSON.stringify(response));        
+             //name of Artist(s)
+                     console.log(JSON.stringify(response.tracks.items[i].artists[j].name));
+
                       //The song's name
-              //        console.log(JSON.stringify(response.data[0].name));
+                      console.log(JSON.stringify(response.tracks.items[i].name));
+                  
                       //A preview link of the song from Spotify
-               //       console.log(JSON.stringify(response.data[0].external_urls.spotify));
+                      console.log(JSON.stringify(response.tracks.items[i].external_urls.spotify));
+                    
                       //The album that the song is from
-              //        console.log(JSON.stringify(response.data[0].album.name));
-     
-                      .catch(function(err) {
+                      console.log(JSON.stringify(response.tracks.items[i].album.name));
+                  }}
+                    })
+                
+                    .catch(function(err) {
                         console.log(err);
                         });
+                    
                    })
+          
                 };
               
               
 //call fucntion to get user input of movie, get details of movie from omdb api      
       function movie(){
             inquirer.prompt(questionMovie).then(answer4=>{
-            var searchMovie = (answer4.whatMovie)
+              console.log(answer4);
+              var searchMovie = answer4.whatMovie;
+            
 /*<<<<<<<<working OMDB call START*>>>>>>>*/
-            //    if (searchMovie = undefined) {
-             //     var searchMovie = "Mr. Nobody";
-             //   }
+              if (searchMovie === "") {
+                 searchMovie = "Mr. Nobody";
+              }
                 axios
                     .get("http://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy")
                     .then(function(response){
-                   // console.log(response.data);
+                    // console.log(response.data);
+                    console.log(response.data.Ratings[0].Value);
                     console.log("Movie: " + response.data.Title);
                     console.log("Year released: " + response.data.Year);
                     console.log("IMDB rating: " + response.data.imdbRating);
-                    console.log("Rotten Tomatoes score: " + response.data.Ratings[1].Value);
+                    
+                    //prevent error if a movie doesn't have a Rotten Tomatoes rating
+                    for (var i = 0; i < response.data.Ratings.length; i++){
+                      if (response.data.Ratings[i].Source === 'Rotten Tomatoes'){
+                    console.log("Rotten Tomatoes score: " + response.data.Ratings[i].Value);
+                    }}
+                    
                     console.log("Produced in: " + response.data.Country);
                     console.log("Language: " + response.data.Language);
                     console.log("Plot: " + response.data.Plot);
