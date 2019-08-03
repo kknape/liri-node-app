@@ -137,12 +137,9 @@ var questionDoIt =
       
 //call song function to get details about a song input by the user, call to spotify api for details
     function song(){
-
-
-
           inquirer.prompt(questionSong).then(answer3=>{
             var searchSong = (answer3.whatSong)
-         //     console.log(searchSong);
+              //If there is no user input then search "The Sign"
                 if (searchSong === "") {
                   searchSong = "The Sign";
                     }
@@ -194,27 +191,22 @@ var questionDoIt =
             inquirer.prompt(questionMovie).then(answer4=>{
               console.log(answer4);
               var searchMovie = answer4.whatMovie;
-            
-/*<<<<<<<<working OMDB call START*>>>>>>>*/
-              if (searchMovie === "") {
-                 searchMovie = "Mr. Nobody";
-                    }
-
+                //If there is no user input then search "Mr. Nobody"
+                  if (searchMovie === "") {
+                    searchMovie = "Mr. Nobody";
+                        }
+                /*<<<<<<<<working OMDB call START*>>>>>>>*/
                 axios
                     .get("http://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy")
                     .then(function(response){
-                    // console.log(response.data);
-                    console.log(response.data.Ratings[0].Value);
                     console.log("Movie: " + response.data.Title);
                     console.log("Year released: " + response.data.Year);
                     console.log("IMDB rating: " + response.data.imdbRating);
-                    
                     //prevent error if a movie doesn't have a Rotten Tomatoes rating
                     for (var i = 0; i < response.data.Ratings.length; i++){
                       if (response.data.Ratings[i].Source === 'Rotten Tomatoes'){
                     console.log("Rotten Tomatoes score: " + response.data.Ratings[i].Value);
                     }}
-                    
                     console.log("Produced in: " + response.data.Country);
                     console.log("Language: " + response.data.Language);
                     console.log("Plot: " + response.data.Plot);
