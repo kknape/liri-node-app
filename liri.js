@@ -1,10 +1,11 @@
 //My Liri Bot
 
-    //Liri can take in these commands:
-    // concert-this
-    // spotify-this-song
-    // movie-this
-    // do-what-it-says
+    /* Liri can take in these commands:
+         concert-this
+         spotify-this-song
+         movie-this
+         do-what-it-says
+    */
 
     //To answer these commands, retrieve data using the `axios` package from these apis
     //[OMDB API](http://www.omdbapi.com)
@@ -189,7 +190,6 @@ var questionDoIt =
 //call fucntion to get user input of movie, get details of movie from omdb api      
       function movie(){
             inquirer.prompt(questionMovie).then(answer4=>{
-              console.log(answer4);
               var searchMovie = answer4.whatMovie;
                 //If there is no user input then search "Mr. Nobody"
                   if (searchMovie === "") {
