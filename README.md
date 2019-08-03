@@ -25,19 +25,24 @@ LIRI will search
      - movie-this
      - do-what-it-says
      
-     -If user selects concert-this, they are prompted to enter a band they want to see.
+     1 - Use up/down arrow keys to select a LIRI prompt
+       - Hit Enter to submit your selected prompt
+       ![Screenshot1](https:///images/liri_screenshots_11.png)
+       
+     2 -If user selects concert-this, they are prompted to enter a band they want to see.
        - LIRI provides results for upcoming concerts for the band entered. 
        - Results include: venue name, venue location, date of concert
+       ![Screenshot2](/images/liri_screenshots_12.png)
       
-      -If user selects spotify-this-song, they are prompted to enter a song
+     3 -If user selects spotify-this-song, they are prompted to enter a song
        - LIRI provides results for up to five results based on the song entered. 
        - Results include: the artist name, song name, preview link and album
        
-      -If user selects movie-this, they are prompted to enter a movie
+     4 -If user selects movie-this, they are prompted to enter a movie
        - LIRI provides results with more information about the movie entered. 
        - Results include: movie title, year released, IMDB rating, Rotten Tomatoes rating (if there is one), country produced in, language, plot, actors
        
-       -(Current Release) If user selects do-what-it-says, LIRI provides results for song "I Want it That Way"
+      5 -(Current Release) If user selects do-what-it-says, LIRI provides results for song "I Want it That Way"
        -(Next Release) LIRI runs a random search and provides random result for one of the four responses
        
 # Technology Used for the App
