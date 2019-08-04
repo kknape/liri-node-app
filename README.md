@@ -27,7 +27,7 @@ LIRI will search
      
      1 - Use up/down arrow keys to select a LIRI prompt
        - Hit Enter to submit your selected prompt
-       ![Screenshot1](https://kknape/liri-node-app/images/liri_screenshots_11.jpg)
+       ![Screenshot1](https://kknape/liri-node-app/images/liri_screenshots_11.png)
        
      2 -If user selects concert-this, they are prompted to enter a band they want to see.
        - LIRI provides results for upcoming concerts for the band entered. 
